@@ -1,7 +1,10 @@
-import AppRouter from "./Router";
+import AppRouter from "components/Router";
+import { useState } from "react";
+import { authService } from "myBase";
 
 function App() {
-  return <AppRouter />;
+  const [isLoggedIn, setisLoggedIn] = useState(authService.currentUser);
+  return <AppRouter isLoggedIn={isLoggedIn} />;
 }
 
 export default App;

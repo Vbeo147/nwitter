@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Auth from "routes/Auth";
 import Home from "routes/Home";
 import Profile from "routes/Profile";
@@ -15,7 +15,10 @@ export default function AppRouter({ isLoggedIn }) {
             <Route exact path="/profile" element={<Profile />} />
           </>
         ) : (
-          <Route exact path="/" element={<Auth />} />
+          <>
+            <Route exact path="/" element={<Auth />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </>
         )}
       </Routes>
     </BrowserRouter>

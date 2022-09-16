@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { dbService } from "myBase";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
 export default function Home({ userObj }) {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
   useEffect(() => {
     // snapshot is listener
-    dbService.collection("nweets").onSnapshot((snapshot) => {
-      const nweetArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setNweets(nweetArray);
-    });
+    onSnapshot(
+      query(collection(dbService, "nweets"), orderBy("createdAt", "desc")),
+      (snapshot) => {
+        const nweetArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNweets(nweetArray);
+      }
+    );
   }, []);
   const onSubmit = async (e) => {
     e.preventDefault();

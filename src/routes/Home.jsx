@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { dbService } from "myBase";
+import { v4 as uuidv4 } from "uuid";
+import { dbService, storageService } from "myBase";
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import Nweet from "components/Nweet";
 
@@ -22,12 +23,15 @@ export default function Home({ userObj }) {
   }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dbService.collection("nweets").add({
-      text: nweet,
-      createdAt: Date.now(),
-      creatorId: userObj.uid,
-    });
-    setNweet("");
+    const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+    const response = await fileRef.putString(attachment, "data_url");
+    console.log(response);
+    // await dbService.collection("nweets").add({
+    //   text: nweet,
+    //   createdAt: Date.now(),
+    //   creatorId: userObj.uid,
+    // });
+    // setNweet("");
   };
   const onChange = (e) => {
     const {
@@ -50,6 +54,7 @@ export default function Home({ userObj }) {
     };
     reader.readAsDataURL(theFile);
   };
+  const onClearAttachment = () => SetAttachment(null);
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -63,7 +68,10 @@ export default function Home({ userObj }) {
         <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Ntweet" />
         {attachment && (
-          <img src={attachment} width="50px" height="50px" alt="" />
+          <div>
+            <img src={attachment} width="50px" height="50px" alt="" />
+            <button onClick={onClearAttachment}>Clear</button>
+          </div>
         )}
       </form>
       <div>

@@ -6,6 +6,7 @@ import Nweet from "components/Nweet";
 export default function Home({ userObj }) {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
+  const [attachment, SetAttachment] = useState();
   useEffect(() => {
     // snapshot is listener
     onSnapshot(
@@ -34,6 +35,21 @@ export default function Home({ userObj }) {
     } = e;
     setNweet(value);
   };
+  const onFileChange = (e) => {
+    const {
+      target: { files },
+    } = e;
+    const theFile = files[0];
+    const reader = new FileReader();
+    // reader.onloadend is listener
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      SetAttachment(result);
+    };
+    reader.readAsDataURL(theFile);
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -44,7 +60,11 @@ export default function Home({ userObj }) {
           placeholder="What's on your mind?"
           maxLength={120}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Ntweet" />
+        {attachment && (
+          <img src={attachment} width="50px" height="50px" alt="" />
+        )}
       </form>
       <div>
         {nweets.map((nweet) => (

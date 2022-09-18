@@ -7,7 +7,7 @@ import Nweet from "components/Nweet";
 export default function Home({ userObj }) {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
-  const [attachment, SetAttachment] = useState();
+  const [attachment, SetAttachment] = useState("");
   useEffect(() => {
     // snapshot is listener
     onSnapshot(

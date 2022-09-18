@@ -4,10 +4,10 @@ import Home from "routes/Home";
 import Profile from "routes/Profile";
 import Navigation from "components/Navigation";
 
-export default function AppRouter({ isLoggedIn, userObj }) {
+export default function AppRouter({ refreshUser, isLoggedIn, userObj }) {
   return (
     <BrowserRouter>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
           <>
@@ -15,7 +15,7 @@ export default function AppRouter({ isLoggedIn, userObj }) {
             <Route
               exact
               path="/profile"
-              element={<Profile userObj={userObj} />}
+              element={<Profile userObj={userObj} refreshUser={refreshUser} />}
             />
           </>
         ) : (

@@ -1,0 +1,21 @@
+.navigation_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0px 30px 0px;
+  font-size: 30px;
+}
+
+.navigation_container ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 15%;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.navigation_container li {
+  display: inline;
+}

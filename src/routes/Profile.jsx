@@ -40,12 +40,17 @@ export default function Profile({ refreshUser, userObj }) {
     <>
       <form onSubmit={onSubmit}>
         <input
+          className="components_form_input"
           onChange={onChange}
           type="text"
           placeholder="Display name"
           value={newDisplayName || ""}
         />
-        <input type="submit" value="Update Profile" />
+        <input
+          className="components_form_input_submit"
+          type="submit"
+          value="Update Profile"
+        />
       </form>
       <button onClick={onLogOutClick}>Log Out</button>
     </>

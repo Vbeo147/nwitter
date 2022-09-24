@@ -21,6 +21,7 @@ export default function AppRouter({ refreshUser, isLoggedIn, userObj }) {
         ) : (
           <>
             <Route exact path="/" element={<Auth />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </>
         )}
       </Routes>

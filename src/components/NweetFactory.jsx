@@ -2,7 +2,7 @@ import { useState } from "react";
 import { storageService, dbService } from "myBase";
 import { v4 as uuidv4 } from "uuid";
 
-export default function NweetFactory({ userObj }) {
+export default function NweetFactory({ userObj, style }) {
   const [nweet, setNweet] = useState("");
   const [attachment, SetAttachment] = useState("");
   const onSubmit = async (e) => {
@@ -48,21 +48,50 @@ export default function NweetFactory({ userObj }) {
   };
   const onClearAttachment = () => SetAttachment(null);
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          value={nweet}
-          onChange={onChange}
-          type="text"
-          placeholder="What's on your mind?"
-          maxLength={120}
-        />
-        <input type="file" accept="image/*" onChange={onFileChange} />
-        <input type="submit" value="Ntweet" />
+    <div className={style.nweet_form_container}>
+      <form onSubmit={onSubmit} className={style.nweet_input_container}>
+        <div>
+          <input
+            className="components_form_input"
+            value={nweet}
+            onChange={onChange}
+            type="text"
+            placeholder="What's on your mind?"
+            maxLength={120}
+            required
+          />
+          <input
+            className="components_form_input_submit"
+            type="submit"
+            value="Ntweet"
+          />
+        </div>
+        <div className={style.nweet_form_file}>
+          <label htmlFor="ex_file">Picture</label>
+          <input
+            id="ex_file"
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+          />
+        </div>
         {attachment && (
-          <div>
-            <img src={attachment} width="50px" height="50px" alt="" />
-            <button onClick={onClearAttachment}>Clear</button>
+          <div className="components_column">
+            <img
+              src={attachment}
+              width="50px"
+              height="50px"
+              style={{
+                marginBottom: "12px",
+              }}
+              alt=""
+            />
+            <button
+              className="components_form_input_submit"
+              onClick={onClearAttachment}
+            >
+              Clear
+            </button>
           </div>
         )}
       </form>

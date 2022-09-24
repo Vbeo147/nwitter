@@ -1,4 +1,6 @@
 import AppRouter from "components/Router";
+import "css/reset.css";
+import "css/Components.css";
 import { useEffect, useState } from "react";
 import { authService } from "myBase";
 

@@ -1,0 +1,36 @@
+.components_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.components_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.components_form_input {
+  width: 300px;
+  height: 35px;
+  padding: 5px 15px 5px 15px;
+  margin-right: 11px;
+  border: transparent;
+  border-radius: 11px;
+  font-size: 15px;
+  transition: border 0.5s ease-in-out;
+}
+
+.components_form_input:focus {
+  border: 1px solid lightslategray;
+}
+
+.components_form_input_submit {
+  width: 80px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 10px;
+}

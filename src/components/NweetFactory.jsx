@@ -49,6 +49,16 @@ export default function NweetFactory({ userObj, style }) {
   const onClearAttachment = () => SetAttachment(null);
   return (
     <div className={style.nweet_form_container}>
+      <h1
+        style={{
+          textAlign: "center",
+          fontSize: "20px",
+          fontWeight: "600",
+        }}
+      >
+        Hello {userObj.displayName}!
+      </h1>
+      <br />
       <form onSubmit={onSubmit} className={style.nweet_input_container}>
         <div>
           <input

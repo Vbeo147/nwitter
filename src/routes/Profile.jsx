@@ -37,7 +37,7 @@ export default function Profile({ refreshUser, userObj }) {
     refreshUser();
   };
   return (
-    <>
+    <div className="components_column">
       <form onSubmit={onSubmit}>
         <input
           className="components_form_input"
@@ -47,12 +47,21 @@ export default function Profile({ refreshUser, userObj }) {
           value={newDisplayName || ""}
         />
         <input
-          className="components_form_input_submit"
+          className="components_form_input_submit_lg"
           type="submit"
           value="Update Profile"
         />
       </form>
-      <button onClick={onLogOutClick}>Log Out</button>
-    </>
+      <button
+        style={{
+          width: "100px",
+          height: "25px",
+          marginTop: "20px",
+        }}
+        onClick={onLogOutClick}
+      >
+        Log Out
+      </button>
+    </div>
   );
 }

@@ -26,14 +26,27 @@ export default function Home({ userObj }) {
     <div className={`components_column`}>
       <NweetFactory userObj={userObj} style={style} />
       <div>
-        {nweets.map((nweet) => (
-          <Nweet
-            key={nweet.id}
-            nweetObj={nweet}
-            isOwner={nweet.creatorId === userObj.uid}
-            style={style}
-          />
-        ))}
+        {nweets.length !== 0 ? (
+          <>
+            {nweets.map((nweet) => (
+              <Nweet
+                key={nweet.id}
+                nweetObj={nweet}
+                isOwner={nweet.creatorId === userObj.uid}
+                style={style}
+              />
+            ))}
+          </>
+        ) : (
+          <div
+            style={{
+              marginTop: "50px",
+              fontSize: "40px",
+            }}
+          >
+            Loading...
+          </div>
+        )}
       </div>
     </div>
   );

@@ -4,8 +4,6 @@ import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import Nweet from "components/Nweet";
 import NweetFactory from "components/NweetFactory";
 import style from "css/Nweet.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home({ userObj }) {
   const [nweets, setNweets] = useState([]);
@@ -23,7 +21,7 @@ export default function Home({ userObj }) {
     );
   }, []);
   return (
-    <div className={`components_column`}>
+    <div className="components_column">
       <NweetFactory userObj={userObj} style={style} />
       <div>
         {nweets.length !== 0 ? (

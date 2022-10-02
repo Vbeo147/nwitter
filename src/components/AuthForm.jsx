@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { authService } from "myBase";
 
-export default function AuthForm() {
+export default function AuthForm({ style }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -37,9 +37,10 @@ export default function AuthForm() {
   };
   const toggleAccount = () => setNewAccount((prev) => !prev);
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <div className="components_column">
+      <form className={style.auth_form_input_container} onSubmit={onSubmit}>
         <input
+          className="components_form_input"
           name="email"
           type="text"
           placeholder="Email"
@@ -48,6 +49,7 @@ export default function AuthForm() {
           onChange={onChange}
         />
         <input
+          className="components_form_input"
           name="password"
           type="password"
           placeholder="Password"
@@ -56,14 +58,21 @@ export default function AuthForm() {
           onChange={onChange}
         />
         <input
+          className="components_form_input_submit_lg"
           type="submit"
           value={newAccount ? "Create Account" : "Sign In"}
         />
         {error}
       </form>
-      <span onClick={toggleAccount}>
+      <span
+        style={{
+          cursor: "pointer",
+          userSelect: "none",
+        }}
+        onClick={toggleAccount}
+      >
         {newAccount ? "Sign In" : "Create Account"}
       </span>
-    </>
+    </div>
   );
 }
